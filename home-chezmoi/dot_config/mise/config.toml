@@ -1,0 +1,24 @@
+[tools]
+# mise support
+usage = "latest"
+chezmoi = "latest"
+# runtimes
+uv = "latest"
+node = "latest"
+bun = "latest"
+neovim = "nightly"
+# cli tools
+zoxide = "latest"
+fzf = "latest"
+
+
+[settings]
+experimental = true
+idiomatic_version_file_enable_tools = ["python"]
+
+[settings.npm]
+bun = true
+
+[settings.node]
+# precompiled binaries; nixos runs them via nix-ld
+compile = false
