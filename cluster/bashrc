@@ -23,3 +23,37 @@ if [ ! -e "$HOME/projects" ] && [ ! -L "$HOME/projects" ]; then
     ln -s /projects/jiangyank "$HOME/projects"
 fi
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/shared/EL9/explorer/anaconda3/2024.06/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/shared/EL9/explorer/anaconda3/2024.06/etc/profile.d/conda.sh" ]; then
+        . "/shared/EL9/explorer/anaconda3/2024.06/etc/profile.d/conda.sh"
+    else
+        export PATH="/shared/EL9/explorer/anaconda3/2024.06/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# used only for Northeastern Explorer Cluster
+module load explorer
+
+
+# ---- uv ----
+. "/projects/jiangyank/uv/env"
+
+export UV_PYTHON_INSTALL_DIR="/projects/jiangyank/.uv-python"
+export UV_CACHE_DIR="/projects/jiangyank/.cache/uv"
+
+# ---- Ollama ----
+load_ollama() {
+    export PATH="$HOME/ollama/bin:$PATH"
+    export LD_LIBRARY_PATH="$HOME/ollama/lib/ollama:${LD_LIBRARY_PATH:-}"
+}
+
+# ---- AutoScientists ----
+# Activate with:
+# conda activate /projects/jiangyank/envs/autoscientists
