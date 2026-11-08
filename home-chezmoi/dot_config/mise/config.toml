@@ -1,23 +1,38 @@
 [tools]
-# mise support
+# support
 usage = "latest"
-chezmoi = "latest"
+# chezmoi = "latest"
 # runtimes
 uv = "latest"
 node = "latest"
 bun = "latest"
+# for low memory download
+pnpm = "latest"
 neovim = "nightly"
-# cli tools
+# lsp / formatters / linters
+# Python
+ruff = "latest"       # lint + format
+"npm:pyright" = "latest"    # lsp (type check)
+# JavaScript / TypeScript / Web
+biome = "latest"      # lint + format
+"npm:typescript" = "latest" # lsp (type check, `tsc --lsp`)
+"npm:typescript-language-server" = "latest"       # lsp
+"npm:vscode-langservers-extracted" = "latest"    # lsp (html/css/json/eslint)
+# @tailwindcss/language-server     # lsp
+# Lua
+stylua = "latest"           # format
+lua-language-server = "latest"  # lsp
+# Shell
+shellcheck = "latest" # lint
+# Markdown / YAML
+prettier = "latest"        # format
+markdownlint-cli2 = "latest"  # lint
+"npm:markdown-toc" = "latest"      # tool (generate TOC)
 zoxide = "latest"
-fzf = "latest"
-
-
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = ["python"]
-
-[settings.npm]
-bun = true
+npm.package_manager = "bun"
 
 [settings.node]
 # precompiled binaries; nixos runs them via nix-ld
