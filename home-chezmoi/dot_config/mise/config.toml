@@ -28,7 +28,22 @@ shellcheck = "latest" # lint
 prettier = "latest"        # format
 markdownlint-cli2 = "latest"  # lint
 "npm:markdown-toc" = "latest"      # tool (generate TOC)
+# CLI tools
+# starship = "latest"
+eza = "latest"
+fzf = "latest"
+gh = "latest"
+
+
+
+
+
 zoxide = "latest"
+
+
+
+
+
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = ["python"]

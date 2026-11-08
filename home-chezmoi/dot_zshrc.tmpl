@@ -1,3 +1,49 @@
+# TODO unix system and WSL ...
+
+path=("$HOME/.local/share/mise/shims" $path)
+path+=("$HOME/.local/bin" "$HOME/.npm-global/bin")
+
+# aliases
+if (( $+commands[eza] )); then
+    alias l="eza -1 --group-directories-first --icons=auto"
+    alias le="eza --group-directories-first --icons=auto"
+    alias led="eza --group-directories-last --icons=auto"
+    alias la="eza -a --group-directories-first --icons=auto"
+    alias larth="eza -lah --git -snew --group-directories-first --icons=auto"
+    alias ll="eza -lh --git --group-directories-first --icons=auto"
+    alias lla="eza -lah --git --group-directories-first --icons=auto"
+    alias lt="eza --tre56e --level=2 --group-directories-first --icons=auto"
+    alias lta="eza --tree --level=2 -a --group-directories-first --icons=auto"
+fi
+(( $+commands[chezmoi] )) && alias ch="chezmoi"
+
+for _z in "{{ .omz_dir }}" "$HOME/.oh-my-zsh"; do
+    [ -f "$_z/oh-my-zsh.sh" ] && { export ZSH="$_z"; break }
+done
+unset _z
+
+if [ -z "$ZSH" ]; then
+    echo "oh-my-zsh not found; install it or run the nix switch that provides {{ .omz_dir }}" >&2
+elif [ ! -w "$ZSH" ]; then
+    # read-only store path: cache and completions go to $HOME, self-update is off
+    export ZSH_CACHE_DIR="$HOME/.cache/oh-my-zsh"
+    mkdir -p "$ZSH_CACHE_DIR/completions"
+    zstyle ':omz:update' mode disabled
+fi
+ZSH_THEME="robbyrussell"
+plugins=(git fzf mise gh)
+[ -n "$ZSH" ] && source "$ZSH/oh-my-zsh.sh"
+
+# zsh plugins: package manager first, then oh-my-zsh custom plugins; syntax-highlighting must be last
+_plugin_dirs=("{{ .zsh_plugin_dir }}"{{ if .is_mac }} "/opt/homebrew/share"{{ end }} "$HOME/.oh-my-zsh/custom/plugins")
+for _p in zsh-autosuggestions/zsh-autosuggestions.zsh zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
+    for _d in $_plugin_dirs; do
+        [ -f "$_d/$_p" ] && { source "$_d/$_p"; break }
+    done
+done
+unset _p _d _plugin_dirs
+
+
 
 {{- if .has_conda }}
 # >>> conda initialize >>>

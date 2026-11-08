@@ -6,7 +6,6 @@
 {{- $uses_nix := or $is_mac $is_nixos -}}
 {{- $nix_share := printf "/etc/profiles/per-user/%s/share" .chezmoi.username -}}
 
-# 仓库不在默认的 ~/.local/share/chezmoi，记住实际位置
 sourceDir = {{ .chezmoi.workingTree | quote }}
 
 [data]
