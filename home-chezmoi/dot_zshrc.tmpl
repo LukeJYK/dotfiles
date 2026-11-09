@@ -79,3 +79,9 @@ export PATH="$HOME/.local/bin:$PATH"
 (( $+commands[mise] )) && eval "$(mise activate zsh)"
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
+# tool hooks
+(( $+commands[mise] )) && eval "$(mise activate zsh)"
+(( $+commands[starship] )) && eval "$(starship init zsh)"
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
+
+
