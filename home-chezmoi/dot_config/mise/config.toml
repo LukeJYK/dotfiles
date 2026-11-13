@@ -34,6 +34,8 @@ eza = "latest"
 fzf = "latest"
 gh = "latest"
 
+"npm:opensrc" = { version = "latest", minimum_release_age = "0s" }
+
 
 awscli = "latest"
 
